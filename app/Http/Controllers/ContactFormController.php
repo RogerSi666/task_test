@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ContactForm;
+use App\Services\CheckFormService;
+use App\Http\Requests\StoreContactRequest;
 
 class ContactFormController extends Controller
 {
@@ -36,17 +38,16 @@ class ContactFormController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreContactRequest $request)
     {
         ContactForm::create([
             'name' => $request->name,
-            'email' => $request->email,
             'title' => $request->title,
+            'email' => $request->email,
             'url' => $request->url,
-            'age' => $request->age,
             'gender' => $request->gender,
+            'age' => $request->age,
             'contact' => $request->contact,
-
         ]);
         return redirect()->route('contacts.index');
     }
@@ -60,19 +61,10 @@ class ContactFormController extends Controller
     public function show($id)
     {
         $contact = ContactForm::find($id);
-        if($contact->gender === 0){
-            $gender = '男性';
-        } else {
-            $gender = '女性';
-        }
+        $gender = CheckFormService::checkGender($contact);
+        $age = CheckFormService::checkAge($contact);
 
-        if($contact->age === 1){ $age = '~19歳'; }
-        if($contact->age === 2){ $age = '20歳~２9歳'; }
-        if($contact->age === 3){ $age = '３0歳~３9歳'; }
-        if($contact->age === 4){ $age = '４0歳~４9歳'; }
-        if($contact->age === 5){ $age = '５0歳~５9歳'; }
-        if($contact->age === 6){ $age = '６０歳〜'; }
-
+       
         return view('contacts.show', compact('contact', 'age', 'gender'));
     }
 
@@ -99,18 +91,9 @@ class ContactFormController extends Controller
     public function update(Request $request, $id)
     {
         $contact = ContactForm::find($id);
-        if($contact->gender === 0){
-            $gender = '男性';
-        } else {
-            $gender = '女性';
-        }
+        $gender = CheckFormService::checkGender($contact);
+        $age = CheckFormService::checkAge($contact);
 
-        if($contact->age === 1){ $age = '~19歳'; }
-        if($contact->age === 2){ $age = '20歳~２9歳'; }
-        if($contact->age === 3){ $age = '３0歳~３9歳'; }
-        if($contact->age === 4){ $age = '４0歳~４9歳'; }
-        if($contact->age === 5){ $age = '５0歳~５9歳'; }
-        if($contact->age === 6){ $age = '６０歳〜'; }
         $contact->name = $request->name;
         $contact->title = $request->title;
         $contact->email = $request->email;
@@ -120,7 +103,7 @@ class ContactFormController extends Controller
         $contact->contact = $request->contact;
         $contact->save();
 
-        return view('contacts.show', compact('contact', 'age', 'gender'));
+        return redirect()->route('contacts.index');
     }
 
     /**
