@@ -48,7 +48,7 @@ class ContactFormController extends Controller
             'contact' => $request->contact,
 
         ]);
-        return view('contacts.index');
+        return redirect()->route('contacts.index');
     }
 
     /**
@@ -84,7 +84,9 @@ class ContactFormController extends Controller
      */
     public function edit($id)
     {
-        //
+        $contact = ContactForm::find($id);
+        return view('contacts.edit', compact('contact'));
+
     }
 
     /**
@@ -96,7 +98,29 @@ class ContactFormController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $contact = ContactForm::find($id);
+        if($contact->gender === 0){
+            $gender = '男性';
+        } else {
+            $gender = '女性';
+        }
+
+        if($contact->age === 1){ $age = '~19歳'; }
+        if($contact->age === 2){ $age = '20歳~２9歳'; }
+        if($contact->age === 3){ $age = '３0歳~３9歳'; }
+        if($contact->age === 4){ $age = '４0歳~４9歳'; }
+        if($contact->age === 5){ $age = '５0歳~５9歳'; }
+        if($contact->age === 6){ $age = '６０歳〜'; }
+        $contact->name = $request->name;
+        $contact->title = $request->title;
+        $contact->email = $request->email;
+        $contact->gender = $request->gender;
+        $contact->age = $request->age;
+        $contact->url = $request->url;
+        $contact->contact = $request->contact;
+        $contact->save();
+
+        return view('contacts.show', compact('contact', 'age', 'gender'));
     }
 
     /**
@@ -107,6 +131,10 @@ class ContactFormController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $contact = ContactForm::find($id);
+        $contact->delete();
+
+        return redirect()->route('contacts.index');
+
     }
 }
