@@ -47,6 +47,7 @@
                 @endif
         </tbody>
       </table>
+      {{ $contacts->links()}}
     </div>
     <div class="flex pl-4 mt-4 lg:w-2/3 w-full mx-auto">
         <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">

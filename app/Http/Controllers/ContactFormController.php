@@ -17,7 +17,7 @@ class ContactFormController extends Controller
     public function index()
     {
         $contacts = ContactForm::select('id', 'name','title','created_at')
-        ->get();
+        ->paginate(20);
         
         return view('contacts.index', compact('contacts'));
     }
