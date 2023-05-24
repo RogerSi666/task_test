@@ -705,10 +705,6 @@ select {
   margin-left: auto;
   margin-right: auto;
 }
-.my-5 {
-  margin-top: 1.25rem;
-  margin-bottom: 1.25rem;
-}
 .-ml-px {
   margin-left: -1px;
 }
@@ -801,9 +797,6 @@ select {
 }
 .min-h-screen {
   min-height: 100vh;
-}
-.w-1\/2 {
-  width: 50%;
 }
 .w-20 {
   width: 5rem;
@@ -1090,10 +1083,6 @@ select {
 .font-sans {
   font-family: Nunito, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
-.text-2xl {
-  font-size: 1.5rem;
-  line-height: 2rem;
-}
 .text-base {
   font-size: 1rem;
   line-height: 1.5rem;
@@ -1134,12 +1123,6 @@ select {
 }
 .leading-8 {
   line-height: 2rem;
-}
-.leading-normal {
-  line-height: 1.5;
-}
-.leading-relaxed {
-  line-height: 1.625;
 }
 .leading-tight {
   line-height: 1.25;
@@ -1197,10 +1180,6 @@ select {
 .text-indigo-700 {
   --tw-text-opacity: 1;
   color: rgb(67 56 202 / var(--tw-text-opacity));
-}
-.text-red-500 {
-  --tw-text-opacity: 1;
-  color: rgb(239 68 68 / var(--tw-text-opacity));
 }
 .text-red-600 {
   --tw-text-opacity: 1;
@@ -1547,11 +1526,6 @@ select {
   .sm\:text-right {
     text-align: right;
   }
-
-  .sm\:text-3xl {
-    font-size: 1.875rem;
-    line-height: 2.25rem;
-  }
 }
 @media (min-width: 768px) {
 
@@ -1575,10 +1549,6 @@ select {
 
   .lg\:w-1\/2 {
     width: 50%;
-  }
-
-  .lg\:w-2\/3 {
-    width: 66.666667%;
   }
 
   .lg\:px-8 {
