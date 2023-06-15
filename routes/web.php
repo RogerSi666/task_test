@@ -13,6 +13,8 @@ use App\Http\Controllers\ContactFormController;
 |
 */
 
+Route::get('shops', [ ShopTestController::class, 'index']);
+
 Route::resource('contacts', ContactFormController::class);
 
 Route::prefix('contacts')
